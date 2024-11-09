@@ -11,15 +11,17 @@ const About = () => {
       id="About"
     >
       <h1 className="font-title font-bold text-[30px] text-center">
-        About our Parathas
+        Taste the Best from Our Kitchen
       </h1>
-      <p className="text-center">Our services</p>
+      <p className="text-center text-[20px]">
+        Delicious Meals Delivered to You
+      </p>
       <section className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[400px] p-4">
         <div className="left w-full md:w-1/2 h-full flex justify-center items-center mb-4 md:mb-0">
           <img
             src={paratha}
             alt="paratha"
-            className="object-contain h-60 w-60 md:h-full md:w-full" // Increased height and width for smaller screens
+            className="object-contain h-60 w-60 md:h-full md:w-full" 
           />
         </div>
         <div className="right w-full md:w-2/3 md:p-6">

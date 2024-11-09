@@ -1,31 +1,31 @@
 import React, { useState } from "react";
-import { FaSun } from "react-icons/fa";
-import { FaMoon } from "react-icons/fa";
+import { FaSun, FaMoon } from "react-icons/fa";
 import logosvg from "../assets/restaurant-plate-svgrepo-com.svg";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkMode } from "../features/theme/ThemeSlice";
 
 const Navbar = () => {
-  const dispatch = useDispatch(); // Fix dispatch
-  const { mode } = useSelector((state) => state.darkMode); // Get the current dark mode state
+  const dispatch = useDispatch();
+  const { mode } = useSelector((state) => state.darkMode);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { products } = useSelector((state) => state.cart);
+
+  const cartItemCount = products.length;
 
   return (
     <nav
-      className={
-        mode
-          ? "bg-gray-700 text-white w-full font-title sticky top-0 z-50"
-          : "bg-sky-900 text-white w-full font-title sticky top-0 z-50"
-      }
+      className={`${
+        mode ? "bg-gray-700" : "bg-sky-900"
+      } text-white w-full font-title sticky top-0 z-50 h-15`}
     >
-      <div className="px-5 xl:px-12 py-6 flex items-center justify-between">
+      <div className="xl:px-10 py-3 flex items-center justify-between">
         <div className="flex items-center">
           <img className="h-12" src={logosvg} alt="Logo" />
           <span className="text-2xl font-bold ml-3">VEG-PARATHAS</span>
         </div>
 
-        {/* Desktop Nav Links */}
+        {/* Desktop Menu - Hidden on screens smaller than 768px */}
         <ul className="hidden md:flex px-4 mx-auto font-heading space-x-12">
           <li>
             <Link className="hover:text-yellow-300 text-[18px]" to="/home">
@@ -48,24 +48,19 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
-
-        {/* Icons & Links */}
-        <div className="hidden xl:flex items-center space-x-5">
-          {/* Dark mode toggle */}
+        <div className="flex items-center space-x-5">
           <button
-            onClick={() => dispatch(toggleDarkMode())} // Dispatch toggle action
+            onClick={() => dispatch(toggleDarkMode())}
             className="flex items-center justify-center p-3 rounded-full bg-gray-500 hover:bg-gray-400 transition duration-300 w-12 h-12"
           >
-            <div className="flex items-center justify-center">
-              {mode ? (
-                <FaMoon className="h-6 w-6 text-yellow-400" /> // Moon icon for dark mode
-              ) : (
-                <FaSun className="h-6 w-6 text-yellow-400" /> // Sun icon for light mode
-              )}
-            </div>
+            {mode ? (
+              <FaMoon className="h-6 w-6 text-yellow-400" />
+            ) : (
+              <FaSun className="h-6 w-6 text-yellow-400" />
+            )}
           </button>
 
-          <Link className="hover:text-gray-200" to="/cart">
+          <Link className="hover:text-gray-200 relative" to="/cart">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-10 w-10"
@@ -80,6 +75,11 @@ const Navbar = () => {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
+            {cartItemCount > 0 && (
+              <span className="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-2 py-1">
+                {cartItemCount}
+              </span>
+            )}
           </Link>
         </div>
 
@@ -105,7 +105,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Only Visible When Toggled */}
       {isMenuOpen && (
         <ul className="flex flex-col items-center xl:hidden bg-gray-900 text-white py-4 space-y-4">
           <li>

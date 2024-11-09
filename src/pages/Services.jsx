@@ -7,13 +7,13 @@ import Card from "./Card";
 
 const Services = () => {
   const { allCart } = useSelector((state) => state.cart);
+  const { mode } = useSelector((state) => state.darkMode);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
-
-  const { mode } = useSelector((state) => state.darkMode);
 
   useEffect(() => {
     AOS.init({
@@ -50,7 +50,8 @@ const Services = () => {
             : "font-semibold text-xl text-center text-black"
         }
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, hic!
+        Discover the flavors of our freshly prepared dishes, crafted with
+        high-quality ingredients and delivered to you with care.
       </p>
 
       {/* Card Grid with AOS Effects */}

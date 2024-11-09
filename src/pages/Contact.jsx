@@ -13,19 +13,16 @@ const Contact = () => {
       id="contact"
     >
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 font-title">
-        {/* Contact Section */}
         <div>
           <h3 className="text-white font-title mb-4">CONTACT</h3>
           <p className="text-sm mb-2">
-            1247/Plot No. 39, 15th Phase, Colony, Kkatpally, Hyderabad
+            1247/Plot No. 39, 15th Phase, Colony, 𝐕𝐢𝐣𝐚𝐲 𝐍𝐚𝐠𝐚𝐫, Indore
           </p>
-          <p className="text-sm mb-2">+91 987-654-3210</p>
+          <p className="text-sm mb-2">+91 626-933-6753</p>
           <p className="text-sm mb-2">+91 123-456-7890</p>
-          <p className="text-sm">info@example.com</p>
-          <p className="text-sm">info@example.com</p>
+          <p className="text-sm">parmarlaxmi260@gmail.com</p>
+          <p className="text-sm">laxmiparmar1234@gmail.com</p>
         </div>
-
-        {/* Our Links Section */}
         <div>
           <h3 className="text-white  mb-4 font-title">OUR LINKS</h3>
           <ul>
@@ -46,8 +43,6 @@ const Contact = () => {
             </li>
           </ul>
         </div>
-
-        {/* Our Services Section */}
         <div>
           <h3 className="text-white font-title mb-4">OUR SERVICES</h3>
           <ul>
@@ -68,8 +63,6 @@ const Contact = () => {
             </li>
           </ul>
         </div>
-
-        {/* Help Center Section */}
         <div>
           <h3 className="text-white font-title mb-4">HELP CENTER</h3>
           <ul>
@@ -91,14 +84,12 @@ const Contact = () => {
           </ul>
         </div>
       </div>
-
-      {/* Bottom Section */}
       <div className="border-t border-gray-700 mt-8 pt-4 text-center">
         <p className="text-sm text-gray-500">
           Copyright 2024 All rights reserved.
         </p>
         <p className="text-sm text-gray-500 mt-2">
-          Crafted with <span className="text-red-500">❤️</span> by DexignZone
+          Crafted with <span className="text-red-500">❤️</span> by Laxmi
         </p>
       </div>
     </footer>

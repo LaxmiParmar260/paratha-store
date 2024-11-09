@@ -50,20 +50,21 @@ const Home = () => {
               mouthwatering dishes.
             </p>
 
-            <div className="flex flex-col lg:flex-row gap-3">
+            <div className="flex flex-col lg:flex-row gap-3  ">
               <button className="bg-green-900 px-3 py-2 rounded-lg text-white hover:bg-red-600 hover:scale-110 transition-all">
                 Order Now
               </button>
-              <button className="bg-white px-3 py-2 rounded-lg border border-red-500 text-red-500 hover:bg-gray-100 hover:scale-110 transition-all">
+              <button className="bg-white px-3 py-2 rounded-lg border border-red-500 text-red-500 hover:bg-gray-100 hover:scale-110 transition-all ">
                 Contact Now
               </button>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 flex justify-center">
+          <div className="w-full lg:w-1/2 flex justify-center md:mt-10 sm:mt-10">
             <img
+              id="img"
               src={paratha}
               alt="paratha"
-              className="absolute  mx-auto w-3/4 lg:w-1/3 md:w-1/2 md:top-80 spin lg:top-28"
+              className="absolute mx-auto w-1/2 md:w-1/3 lg:w-1/4 md:top-96 spin lg:top-28"
             />
             <img
               src={tomatocut}
