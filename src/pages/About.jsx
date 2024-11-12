@@ -21,7 +21,7 @@ const About = () => {
           <img
             src={paratha}
             alt="paratha"
-            className="object-contain h-60 w-60 md:h-full md:w-full" 
+            className="object-contain h-60 w-60 md:h-full md:w-full"
           />
         </div>
         <div className="right w-full md:w-2/3 md:p-6">

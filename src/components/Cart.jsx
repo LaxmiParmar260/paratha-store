@@ -15,12 +15,13 @@ const Cart = () => {
   const { products } = useSelector((state) => state.cart);
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const extraSauceCost = 20;
 
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
 
-  // Handle quantity changes for each product
+  // Handle quantity changes
   const handleQuantityChange = (id, amount) => {
     const item = products.find((item) => item.id === id);
     if (item) {
@@ -29,57 +30,61 @@ const Cart = () => {
     }
   };
 
-  // Toggle extra sauce for a specific item
   const handleExtraSauceToggle = (id) => {
     dispatch(toggleExtraSauce(id));
   };
 
-  // Apply promo code discount
   const handleApplyPromo = () => {
     setDiscount(promoCode === "DISCOUNT10" ? 10 : 0);
   };
 
-  // Calculate totals
   const totalItems = products.reduce(
     (acc, item) => acc + (item.quantity || 1),
     0
   );
-  const subtotal = products.reduce(
-    (acc, item) => acc + item.price * (item.quantity || 1),
-    0
-  );
+  const subtotal = products.reduce((acc, item) => {
+    const itemTotal =
+      item.price * (item.quantity || 1) +
+      (item.extraSauce ? extraSauceCost * (item.quantity || 1) : 0);
+    return acc + itemTotal;
+  }, 0);
   const totalCost = subtotal - discount;
 
   return (
-    <div className="container mx-auto py-8 px-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">Shopping Cart</h1>
+    <div className="container mx-auto py-8 px-4 lg:px-8">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+        <h1 className="text-2xl font-bold mb-4 md:mb-0">Shopping Cart</h1>
         <Link to="/home#services" className="text-indigo-600">
-          <div className="flex justify-center items-center">
+          <div className="flex items-center">
             <FaArrowLeft /> &nbsp; Continue Shopping
           </div>
         </Link>
       </div>
 
-      {/* Show empty cart image if no products are present */}
       {products.length === 0 ? (
         <div className="flex flex-col items-center">
-          <img src={emptyCart} alt="Empty Cart" className="w-1/2 mb-4" />
+          <img
+            src={emptyCart}
+            alt="Empty Cart"
+            className="w-full max-w-xs mb-4"
+          />
           <p className="text-lg font-semibold text-gray-500">
             Your cart is empty
           </p>
         </div>
       ) : (
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Product List */}
-          <div className="w-full lg:w-2/3 bg-white p-6 rounded-lg shadow-md">
+          <div className="w-full lg:w-2/3 bg-white p-4 md:p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">{totalItems} Items</h2>
             {products.map((item) => (
-              <div key={item.id} className="flex items-center py-4 border-b">
+              <div
+                key={item.id}
+                className="flex flex-col md:flex-row items-center py-4 border-b gap-4"
+              >
                 <img
                   src={item.img}
                   alt={item.name}
-                  className="w-20 h-20 rounded mr-4"
+                  className="w-24 h-24 rounded object-cover"
                 />
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg">{item.name}</h3>
@@ -90,16 +95,18 @@ const Cart = () => {
                     Remove
                   </button>
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     className="mr-2"
                     checked={item.extraSauce || false}
                     onChange={() => handleExtraSauceToggle(item.id)}
                   />
-                  <span className="text-gray-500">Extra Sauce</span>
+                  <span className="text-gray-500">
+                    Extra Sauce (₹{extraSauceCost})
+                  </span>
                 </div>
-                <div className="flex items-center ml-4">
+                <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleQuantityChange(item.id, -1)}
                     className="px-2 py-1 text-gray-700 border rounded hover:bg-gray-200"
@@ -114,9 +121,13 @@ const Cart = () => {
                     +
                   </button>
                 </div>
-                <div className="text-right ml-4">
+                <div className="text-right">
                   <span className="text-gray-700">
-                    ₹{item.price * (item.quantity || 1)}
+                    ₹
+                    {item.price * (item.quantity || 1) +
+                      (item.extraSauce
+                        ? extraSauceCost * (item.quantity || 1)
+                        : 0)}
                   </span>
                 </div>
               </div>
@@ -124,7 +135,7 @@ const Cart = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="w-full lg:w-1/3 bg-white p-6 rounded-lg shadow-md">
+          <div className="w-full lg:w-1/3 bg-white p-4 md:p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
 
             <div className="flex justify-between py-2">

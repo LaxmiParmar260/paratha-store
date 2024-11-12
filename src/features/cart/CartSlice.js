@@ -21,16 +21,16 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       if (existingItem) {
-        existingItem.quantity += 1; // Increment quantity if item already in cart
+        existingItem.quantity += 1;
       } else {
-        state.products.push({ ...action.payload, quantity: 1 }); // Add new item with quantity 1
+        state.products.push({ ...action.payload, quantity: 1 });
       }
     },
     updateQuantity: (state, action) => {
       const { id, quantity } = action.payload;
       const item = state.products.find((product) => product.id === id);
       if (item) {
-        item.quantity = Math.max(1, quantity); // Prevent quantity from going below 1
+        item.quantity = Math.max(1, quantity);
       }
     },
     toggleExtraSauce: (state, action) => {
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
         (product) => product.id === action.payload
       );
       if (item) {
-        item.extraSauce = !item.extraSauce; // Toggle extra sauce property
+        item.extraSauce = !item.extraSauce;
       }
     },
     removeItem: (state, action) => {

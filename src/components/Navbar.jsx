@@ -20,12 +20,13 @@ const Navbar = () => {
       } text-white w-full font-title sticky top-0 z-50 h-15`}
     >
       <div className="xl:px-10 py-3 flex items-center justify-between">
-        <div className="flex items-center">
-          <img className="h-12" src={logosvg} alt="Logo" />
-          <span className="text-2xl font-bold ml-3">VEG-PARATHAS</span>
+        
+        <div  className="flex items-center">
+          <img  className="h-12" src={logosvg} alt="Logo" />
+          <span className="text-2xl font-bold ml-3"><Link to={"/"}>VEG-PARATHAS</Link>
+           </span>
         </div>
-
-        {/* Desktop Menu - Hidden on screens smaller than 768px */}
+  
         <ul className="hidden md:flex px-4 mx-auto font-heading space-x-12">
           <li>
             <Link className="hover:text-yellow-300 text-[18px]" to="/home">

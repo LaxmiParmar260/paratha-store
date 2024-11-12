@@ -37,8 +37,8 @@ const Services = () => {
         data-aos="zoom-in"
         className={
           mode
-            ? "text-white font-bold text-6xl text-center"
-            : "text-black font-bold text-6xl text-center"
+            ? "text-white font-bold text-3xl  text-center"
+            : "text-black font-bold text-3xl text-center"
         }
       >
         View Our Tasty <span className="text-green-500 italic">Foods</span>
@@ -46,8 +46,8 @@ const Services = () => {
       <p
         className={
           mode
-            ? "text-white font-semibold text-xl text-center"
-            : "font-semibold text-xl text-center text-black"
+            ? "text-white font-semibold text-xl text-center mb-10"
+            : "font-semibold text-xl text-center text-black mb-10"
         }
       >
         Discover the flavors of our freshly prepared dishes, crafted with
@@ -57,7 +57,7 @@ const Services = () => {
       {/* Card Grid with AOS Effects */}
       <div
         id="grids"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10 w-full"
+        className="container mx-auto px-4 flex flex-col space-y-4"
       >
         {allCart.map((item) => (
           <div key={item.id} data-aos="fade-up">

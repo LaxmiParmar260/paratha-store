@@ -11,14 +11,14 @@ import { useSelector } from "react-redux";
 const Home = () => {
   const { mode } = useSelector((state) => state.darkMode);
   return (
-    <div>
+    <div className="">
       <div
         className={
           mode ? "bg-slate-900 text-white h-[600px]" : "bg-orange-50 h-[600px]"
         }
       >
         <div className="flex flex-col lg:flex-row items-center justify-center p-5 lg:max-w-7xl mx-auto relative">
-          <div className="w-full lg:w-1/2 space-y-6 px-5 lg:px-10 relative">
+          <div className="w-full lg:w-1/2 space-y-6 px-5 lg:px-10 relative h-[300px] mb-20">
             <div className="flex gap-2">
               <img
                 src={playStore}
